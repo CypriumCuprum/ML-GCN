@@ -175,7 +175,7 @@ class Engine(object):
             else:
                 print("=> no checkpoint found at '{}'".format(self.state['resume']))
 
-        print("1111")
+        
         if self.state['use_gpu']:
             train_loader.pin_memory = True
             val_loader.pin_memory = True
@@ -192,7 +192,9 @@ class Engine(object):
             return
 
         # TODO define optimizer
-
+        print("1111")
+        print(self.state['start_epoch'])
+        print(self.state['max_epochs'])
         for epoch in range(self.state['start_epoch'], self.state['max_epochs']):
             self.state['epoch'] = epoch
             lr = self.adjust_learning_rate(optimizer)
