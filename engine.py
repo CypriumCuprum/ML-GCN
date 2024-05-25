@@ -175,7 +175,7 @@ class Engine(object):
             else:
                 print("=> no checkpoint found at '{}'".format(self.state['resume']))
 
-
+        print("1111")
         if self.state['use_gpu']:
             train_loader.pin_memory = True
             val_loader.pin_memory = True
