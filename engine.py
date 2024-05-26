@@ -125,9 +125,14 @@ class Engine(object):
         if self._state('train_transform') is None:
             normalize = transforms.Normalize(mean=model.image_normalization_mean,
                                              std=model.image_normalization_std)
+            # self.state['train_transform'] = transforms.Compose([
+            #     MultiScaleCrop(self.state['image_size'], scales=(1.0, 0.875, 0.75, 0.66, 0.5), max_distort=2),
+            #     transforms.RandomHorizontalFlip(),
+            #     transforms.ToTensor(),
+            #     normalize,
+            # ])
             self.state['train_transform'] = transforms.Compose([
-                MultiScaleCrop(self.state['image_size'], scales=(1.0, 0.875, 0.75, 0.66, 0.5), max_distort=2),
-                transforms.RandomHorizontalFlip(),
+                Warp(self.state['image_size']),
                 transforms.ToTensor(),
                 normalize,
             ])
